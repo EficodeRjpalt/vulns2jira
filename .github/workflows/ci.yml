@@ -3,7 +3,7 @@ name: CI Pipeline
 on:
   pull_request:
     branches:
-      - main  # Triggers only on pull requests targeting the main branch
+      - master  # Triggers only on pull requests targeting the main branch
 
 jobs:
   build-and-test:
