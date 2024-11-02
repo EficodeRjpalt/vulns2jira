@@ -1,0 +1,14 @@
+name: "Dependabot Alerts to Jira"
+description: "Retrieves open Dependabot alerts and logs basic information about them."
+
+inputs:
+  github_token:
+    description: "GitHub token for accessing the repository"
+    required: true
+  repo:
+    description: "Repository to check, in format owner/repo"
+    required: true
+
+runs:
+  using: "node20"
+  main: "dist/index.js"
