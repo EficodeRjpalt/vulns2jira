@@ -1,0 +1,53 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.pnpm-debug.log*
+.DS_Store
+
+# TypeScript
+*.tsbuildinfo
+
+# Dist folder (output of TypeScript compilation)
+dist/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs
+*.log
+logs/*.log
+
+# Coverage reports
+coverage/
+*.lcov
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# MacOS files
+.DS_Store
+
+# GitHub Actions
+.github/workflows/*.log
+
+# Optional npm cache
+.npm/
+
+# Jest and Testing
+jest-test-results.json
+.vscode/test-results
+
+# Other
+Thumbs.db
+*.swp
+*.bak
+*.tmp
