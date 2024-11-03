@@ -1,3 +1,4 @@
+# Depdendabot Alerts to Jira Issues #
 Project Commands
 This project uses TypeScript, Jest for testing, ESLint for linting, and GitHub Actions for CI. Below is a list of useful commands to help you get started.
 
