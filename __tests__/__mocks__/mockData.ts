@@ -1,6 +1,7 @@
 import { format } from 'date-fns'
+import { Alert } from '../../src/types'
 
-export const generateMockAlerts = () => {
+export const generateMockAlerts = (): Alert[] => {
   const currentDate = format(new Date(), "yyyy-MM-dd'T'HH:mm:ss'Z'")
 
   return [
