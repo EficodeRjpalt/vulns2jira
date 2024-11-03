@@ -1,52 +1,110 @@
-# Depdendabot Alerts to Jira Issues #
-Project Commands
-This project uses TypeScript, Jest for testing, ESLint for linting, and GitHub Actions for CI. Below is a list of useful commands to help you get started.
+# Project Name
 
-Setup
-Install all dependencies for the project:
+## Description
+
+A brief description of your project.
+
+## Installation
+
+To install the project dependencies, run:
 
 `npm install`
 
-Build
-Compile TypeScript files to JavaScript:
+## Scripts
+
+### Clean
+
+To clean the `dist` directory, run:
+
+`npm run clean`
+
+### Build
+
+To clean the `dist` directory and compile the TypeScript files, run:
 
 `npm run build`
 
-Lint
-Run ESLint to check for code quality and formatting issues:
+### Test
 
-`npm run lint`
-
-Test
-Run Jest to execute all tests:
+To clean the `dist` directory and run the tests, run:
 
 `npm test`
 
-Git Commands
-Initialize Repository and Set Remote
-If you haven’t already done so, initialize the Git repository and add the remote:
+## GitHub Actions
 
-git init
-git remote add origin https://github.com/your-username/your-repo.git
+This project uses GitHub Actions for continuous integration. The workflow is defined in `.github/workflows/ci.yml`.
 
-Branch Management
-Create and switch to a new branch:
+### Workflow Configuration
 
-git checkout -b new-branch-name
+name: CI
 
-Set up tracking for the main branch (if not already set):
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
-git branch --set-upstream-to=origin/main main
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
 
-Pushing Changes
-Push changes to the current branch:
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-git push
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Specify the Node.js version you want to use
 
-If pushing a new branch, use:
+      - name: Install dependencies
+        run: npm install
 
-git push --set-upstream origin new-branch-name
+      - name: Build project
+        run: npm run build
 
-GitHub Actions
-The CI pipeline is set up in .github/workflows/CI.yml and will run automatically on pull requests to the main branch. No additional commands are needed to trigger the workflow manually.
+      - name: Run tests
+        run: npm test
 
+## TypeScript Configuration
+
+Ensure that your `tsconfig.json` is properly configured to include the `types` directory.
+
+### Example `tsconfig.json`
+
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "typeRoots": ["./node_modules/@types", "./src/types"]
+  },
+  "include": ["src/**/*.ts", "src/global.d.ts"]
+}
+
+## Directory Structure
+
+Here is an example directory structure for the project:
+
+project-root/
+├── src/
+│   ├── types/
+│   │   └── index.ts
+│   ├── __tests__/
+│   │   ├── __mocks__/
+│   │   │   └── mockData.ts
+│   │   └── githubApi.test.ts
+│   └── githubApi.ts
+├── package.json
+└── tsconfig.json
+
+## License
+
+Include your project's license information here.
