@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc",
     "lint": "eslint . --ext .ts",
-    "test": "jest"
+    "test": "npm run clean && jest"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
     "@actions/core": "^1.11.1",
     "@actions/github": "^6.0.0",
     "axios": "^1.7.7",
+    "date-fns": "^4.1.0",
     "typescript": "^5.6.3"
   },
   "devDependencies": {
