@@ -3,7 +3,7 @@ name: Build and Commit
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build-and-commit:
@@ -37,5 +37,5 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: update dist folder"
-          branch: main
+          branch: master
           file_pattern: dist/
