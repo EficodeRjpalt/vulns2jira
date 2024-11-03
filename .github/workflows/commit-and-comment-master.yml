@@ -5,16 +5,19 @@ on:
     branches:
       - master
 
-permissions: 
-  contents: write  # Grants write permission for pushing changes
-
 jobs:
   build-and-commit:
     runs-on: ubuntu-latest
 
+    env:
+      ADMIN_PAT: ${{ secrets.ADMIN_PAT }}  # Store PAT in secrets
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ env.ADMIN_PAT }}
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -29,17 +32,17 @@ jobs:
 
       - name: Set Git user to original pusher
         run: |
-          git config user.name "${{ github.actor }}"
-          git config user.email "$(jq -r '.pusher.email' < $GITHUB_EVENT_PATH)"
+          git config user.name "Repository Admin"
+          git config user.email "rasmus.paltschik@eficode.com"
 
       - name: Force add dist folder
         run: git add -f dist/
 
       - name: Commit changes
         run: |
-          git commit -m "chore: update dist folder" || echo "No changes to commit"
+          git commit -m "chore: update dist folder on behalf of the admin" || echo "No changes to commit"
 
-      - name: Push changes
+      - name: Push changes to master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: git push
+          GITHUB_TOKEN: ${{ secrets.ADMIN_PAT }}
+        run: git push origin master
