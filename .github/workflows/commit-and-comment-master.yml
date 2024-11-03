@@ -5,6 +5,9 @@ on:
     branches:
       - master
 
+permissions: 
+  contents: write  # Grants write permission for pushing changes
+
 jobs:
   build-and-commit:
     runs-on: ubuntu-latest
@@ -27,8 +30,11 @@ jobs:
       - name: Force add dist folder
         run: git add -f dist/
 
-      - name: Commit dist folder
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "chore: update dist folder"
-          branch: master
+      - name: Commit changes
+        run: |
+          git commit -m "chore: update dist folder" || echo "No changes to commit"
+
+      - name: Push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: git push
