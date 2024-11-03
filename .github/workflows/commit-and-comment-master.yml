@@ -27,6 +27,11 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Set Git user to original pusher
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "$(jq -r '.pusher.email' < $GITHUB_EVENT_PATH)"
+
       - name: Force add dist folder
         run: git add -f dist/
 
