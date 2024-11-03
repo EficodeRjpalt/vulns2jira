@@ -2,7 +2,7 @@
 
 ## Description
 
-A brief description of your project.
+A project to send Dependabot alerts to a Jira project.
 
 ## Installation
 
