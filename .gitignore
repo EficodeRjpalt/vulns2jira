@@ -11,7 +11,6 @@ package-lock.json
 *.tsbuildinfo
 
 # Dist folder (output of TypeScript compilation)
-dist/
 
 # Environment variables
 .env
