@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '20'  # Specify the Node.js version you want to use
 
       - name: Install dependencies
         run: npm install
@@ -24,17 +24,11 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Verify dist folder contents
-        run: ls -la dist/
-
-      - name: Show Git status
-        run: git status
-
-      - name: Stage dist folder
-        run: git add dist/
+      - name: Force add dist folder
+        run: git add -f dist/
 
       - name: Commit dist folder
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "chore: update dist folder"
           branch: master
