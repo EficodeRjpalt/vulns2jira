@@ -24,11 +24,15 @@ jobs:
       - name: Build the project
         run: npm run build
 
+      - name: Run linter
+        run: npm run lint
+
       - name: Run tests
         run: npm test
 
-      - name: Run linter
-        run: npm run lint
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4.6.0
+
 
   code-scanning:
     runs-on: ubuntu-latest
